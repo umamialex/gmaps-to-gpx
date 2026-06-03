@@ -1,5 +1,8 @@
 # gmaps-to-gpx
 
+[![Live demo](https://img.shields.io/badge/live-demo-FFE600?style=flat-square&logo=googlemaps&logoColor=000)](https://umamialex.github.io/gmaps-to-gpx/)
+[![Deploy](https://img.shields.io/github/actions/workflow/status/umamialex/gmaps-to-gpx/pages.yml?style=flat-square&label=pages)](https://github.com/umamialex/gmaps-to-gpx/actions/workflows/pages.yml)
+
 Convert a Google Maps directions link into a GPX **track** that the **Sideways** app
 (and other apps that read GPX tracks) will load.
 
