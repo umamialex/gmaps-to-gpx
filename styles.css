@@ -34,7 +34,7 @@ main {
   min-height: clamp(360px, 68vh, 680px);
   display: flex;
   align-items: flex-end;
-  background: #0a0a0a url("./assets/car.jpg") center 38% / cover no-repeat;
+  background: #0a0a0a url("./assets/car.jpg") center bottom / cover no-repeat;
   border-bottom: 1px solid var(--line);
 }
 .hero::after {
