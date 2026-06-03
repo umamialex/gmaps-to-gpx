@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://umamialex.github.io/gmaps-to-gpx/sitemap.xml

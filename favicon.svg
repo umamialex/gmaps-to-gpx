@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="GPX Route Builder">
+  <rect width="64" height="64" rx="13" fill="#0a0a0a" />
+  <path
+    d="M14 51 C 14 36, 33 37, 33 25 C 33 16, 44 15, 49 20"
+    fill="none"
+    stroke="#ffe600"
+    stroke-width="6"
+    stroke-linecap="round"
+    stroke-linejoin="round"
+  />
+  <circle cx="49" cy="20" r="6" fill="#ffe600" />
+</svg>

@@ -20,6 +20,8 @@ const TYPES = {
   ".jpeg": "image/jpeg",
   ".png": "image/png",
   ".webp": "image/webp",
+  ".txt": "text/plain",
+  ".xml": "application/xml",
 };
 
 http
