@@ -71,19 +71,16 @@
       <div class="hero-inner">
         <p class="eyebrow">Google Maps to GPX</p>
         <h1>From the map<br />to the apex</h1>
+        <p class="lede">
+          Paste a Google Maps route and get a clean GPX of the drive — corner for corner.
+        </p>
       </div>
     </header>
 
     <main>
-      <p class="lede">
-        Paste a Google Maps route and get a clean GPX of the drive — corner for corner.
-        Plan the perfect backroad stage, then take it with you. Pairs nicely with pace-note
-        apps like <strong>Sideways</strong>.
-      </p>
-
       <form id="form" class="panel">
-        <div class="field">
-          <label for="url">Your route</label>
+        <label for="url" class="field-label">Your route</label>
+        <div class="primary">
           <input
             id="url"
             type="text"
@@ -91,22 +88,22 @@
             autocomplete="off"
             required
           />
+          <button id="go" type="submit">Generate GPX</button>
         </div>
 
-        <div class="field">
-          <label for="name">Stage name</label>
-          <input id="name" type="text" value="Sunday Stage" />
+        <div class="secondary">
+          <div class="field">
+            <label for="name">Stage name</label>
+            <input id="name" type="text" value="Sunday Stage" />
+          </div>
+          <details class="advanced">
+            <summary>Advanced</summary>
+            <label class="check">
+              <input id="uturns" type="checkbox" />
+              Let the route turn around at a stop instead of looping through
+            </label>
+          </details>
         </div>
-
-        <details class="advanced">
-          <summary>Advanced</summary>
-          <label class="check">
-            <input id="uturns" type="checkbox" />
-            Let the route turn around at a stop instead of looping through
-          </label>
-        </details>
-
-        <button id="go" type="submit">Generate GPX</button>
       </form>
 
       <p id="status" class="status" hidden></p>
