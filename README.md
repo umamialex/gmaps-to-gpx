@@ -30,6 +30,25 @@ python3 gmaps_to_gpx.py "https://maps.app.goo.gl/XXXXXXXX" --print-stops
 
 No third-party dependencies — Python 3 standard library only.
 
+## Tests
+
+Run the offline test suite (no network needed) from the repo root:
+
+```bash
+python3 -m unittest discover
+```
+
+Offline tests cover geocode-token decoding, stop extraction, GPX structure /
+Sideways compatibility, and verify that every decoded stop actually lies on its
+route's track. Fixtures live in `tests/fixtures/` (two real routes).
+
+There's also an opt-in end-to-end test that expands a real share link and routes it
+through OSRM:
+
+```bash
+GMAPS_GPX_NETWORK_TESTS=1 python3 -m unittest discover
+```
+
 ## How it works
 
 1. **Expand the link.** `maps.app.goo.gl/...` redirects to a `maps.google.com/?geocode=...`

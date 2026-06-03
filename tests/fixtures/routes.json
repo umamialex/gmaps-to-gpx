@@ -1,0 +1,31 @@
+{
+  "hill_country": {
+    "gpx": "route_hill_country.gpx",
+    "geocode_param": "FTEhzgEdIKMn-inDR26lXT9bhjHqhKt8op0M4g%3D%3D;FStyzQEdBksm-g%3D%3D;FUyZzAEdYosl-infRhlZzGlbhjEOVaDQOB0UOg%3D%3D;FYeGzAEdUKEm-g%3D%3D;FSS6ywEdEh8m-ilt6Yh0XWlbhjEWNu-nwhSL5w%3D%3D;FX55yQEdNKkk-inj564sl51chjHRbijWzsvVdw%3D%3D;Fe58yQEdOIMm-g%3D%3D;FZhxyQEdd9Um-g%3D%3D;FfbSyQEdYgQn-imHHqE03l1bhjE17lZV4wAHJg%3D%3D",
+    "stops": [
+      [30.286129, -98.065632],
+      [30.241323, -98.153722],
+      [30.185804, -98.202782],
+      [30.180999, -98.131632],
+      [30.128676, -98.164974],
+      [29.981054, -98.260684],
+      [29.981934, -98.139336],
+      [29.979032, -98.118281],
+      [30.003958, -98.106270]
+    ]
+  },
+  "central_tx": {
+    "gpx": "route_central_tx.gpx",
+    "geocode_param": "FTLczgEdzWQy-inXu7mUWutEhjH4LH3oaSMbzg%3D%3D;FZko0AEdP7g3-ikpjAhFJ1xEhjFoKSffYeekAg%3D%3D;FVv6zwEdgf08-ikZXfZ2gT9EhjHtejtUSBFoMA%3D%3D;FUOvzwEdxIY--ilhZpWkxyJEhjHJDJep97oXnQ%3D%3D;FWPXzgEd0P0--g%3D%3D;FRcZzgEdTm8--inxLO-r-xlEhjGTITbj3nLBZQ%3D%3D;Ff15zQEdgY06-imPBDRuqG5EhjFqZlDmQmaDJA%3D%3D;FXmLzAEd1d44-imnn9kRQmVEhjG1ihLg8U0igg%3D%3D",
+    "stops": [
+      [30.334002, -97.360691],
+      [30.419097, -97.011649],
+      [30.407259, -96.666239],
+      [30.388035, -96.565564],
+      [30.332771, -96.535088],
+      [30.284055, -96.571570],
+      [30.243325, -96.825983],
+      [30.182265, -96.936235]
+    ]
+  }
+}

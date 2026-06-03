@@ -1,5 +1,7 @@
 # Generated routes
 *.gpx
+# ...but keep the test fixtures
+!tests/fixtures/*.gpx
 
 # Python
 __pycache__/
