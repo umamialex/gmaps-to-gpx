@@ -31,9 +31,6 @@ main {
 /* ---- hero ---- */
 .hero {
   position: relative;
-  min-height: clamp(600px, 82vh, 760px);
-  display: flex;
-  align-items: flex-start;
   background: #0a0a0a url("./assets/car.jpg") center bottom / cover no-repeat;
   border-bottom: 1px solid var(--line);
 }
@@ -46,7 +43,9 @@ main {
     to bottom,
     rgba(10, 10, 10, 0.95) 0%,
     rgba(10, 10, 10, 0.62) 24%,
-    rgba(10, 10, 10, 0) 50%
+    rgba(10, 10, 10, 0) 50%,
+    rgba(10, 10, 10, 0) 86%,
+    rgba(10, 10, 10, 0.35) 100%
   );
 }
 .hero-inner {
@@ -55,7 +54,7 @@ main {
   width: 100%;
   max-width: 760px;
   margin: 0 auto;
-  padding: clamp(2rem, 5vh, 3.25rem) 1.5rem 0;
+  padding: clamp(2rem, 5vh, 3.25rem) 1.5rem 2rem;
 }
 
 .eyebrow {
