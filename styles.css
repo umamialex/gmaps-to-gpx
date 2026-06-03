@@ -31,7 +31,7 @@ main {
 /* ---- hero ---- */
 .hero {
   position: relative;
-  min-height: clamp(640px, 100svh, 940px);
+  min-height: clamp(600px, 82vh, 760px);
   display: flex;
   align-items: flex-start;
   background: #0a0a0a url("./assets/car.jpg") center bottom / cover no-repeat;
@@ -57,7 +57,7 @@ main {
   width: 100%;
   max-width: 760px;
   margin: 0 auto;
-  padding: clamp(2.5rem, 7vh, 4.5rem) 1.5rem 2rem;
+  padding: clamp(2rem, 5vh, 3.25rem) 1.5rem 2rem;
 }
 
 .eyebrow {
@@ -89,7 +89,7 @@ h1 {
 
 /* ---- form panel (frosted card so labels read over the photo) ---- */
 .panel {
-  margin-top: 2rem;
+  margin-top: 1.5rem;
   background: rgba(12, 12, 12, 0.72);
   border: 1px solid rgba(255, 255, 255, 0.12);
   border-radius: 4px;
