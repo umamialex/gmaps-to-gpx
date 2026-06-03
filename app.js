@@ -7,7 +7,15 @@
 
 import { linkToGpx, buildRouteSvg } from "./src/core.js";
 
-const CORS_PROXY = "https://api.codetabs.com/v1/proxy/?quest=";
+// The browser can't follow Google's short-link redirect itself (CORS), so we
+// route it through public CORS proxies. They're inconsistent — the server they
+// fetch from sometimes gets a Google consent/shell page with no route data — so
+// we try several and use the first response that actually contains `geocode=`.
+const CORS_PROXIES = [
+  (u) => `https://corsproxy.io/?url=${encodeURIComponent(u)}`,
+  (u) => `https://api.codetabs.com/v1/proxy/?quest=${encodeURIComponent(u)}`,
+  (u) => `https://api.allorigins.win/raw?url=${encodeURIComponent(u)}`,
+];
 
 const $ = (id) => document.getElementById(id);
 const form = $("form");
@@ -19,15 +27,22 @@ let lastFilename = "route.gpx";
 /** Resolve a link to text containing geocode= (expanded URL or proxied body). */
 async function expandToText(input) {
   const url = input.trim();
-  if (url.includes("geocode=")) return url; // user pasted an expanded URL
-  const res = await fetch(CORS_PROXY + encodeURIComponent(url));
-  if (!res.ok) {
-    throw new Error(
-      `Could not expand the link (proxy HTTP ${res.status}). ` +
-        "Open the link once and paste the resulting URL instead."
-    );
+  if (url.includes("geocode=")) return url; // user pasted an expanded URL already
+
+  for (const makeUrl of CORS_PROXIES) {
+    try {
+      const res = await fetch(makeUrl(url));
+      if (!res.ok) continue;
+      const text = await res.text();
+      if (text.includes("geocode=")) return text;
+    } catch {
+      // CORS/network error on this proxy — try the next one
+    }
   }
-  return await res.text();
+  throw new Error(
+    "Couldn't read that link automatically. Open it in Google Maps, then copy the " +
+      "full URL from the address bar and paste that here instead."
+  );
 }
 
 function setStatus(msg, kind) {
