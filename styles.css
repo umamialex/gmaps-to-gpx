@@ -204,6 +204,16 @@ button {
   padding-top: 2.5rem;
 }
 
+.route-map {
+  margin-bottom: 2rem;
+  border: 1px solid var(--line);
+  border-radius: 4px;
+  background: #121212;
+  overflow: hidden;
+}
+.route-map:empty { display: none; }
+.route-map svg { display: block; width: 100%; height: auto; }
+
 .stats {
   display: flex;
   gap: 0;

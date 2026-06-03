@@ -5,7 +5,7 @@
 // body (which contains the geocode= URL). If the user already pasted an
 // expanded URL, we skip the proxy. OSRM is called directly (it sends CORS *).
 
-import { linkToGpx } from "./src/core.js";
+import { linkToGpx, buildRouteSvg } from "./src/core.js";
 
 const CORS_PROXY = "https://api.codetabs.com/v1/proxy/?quest=";
 
@@ -44,6 +44,8 @@ function slugify(name) {
 function renderResult({ stops, points, miles, hours, gpx }, name) {
   lastGpx = gpx;
   lastFilename = slugify(name);
+
+  $("route-map").innerHTML = buildRouteSvg(points, stops, { width: 720, height: 320 });
 
   $("stat-distance").textContent = `${miles.toFixed(1)} mi`;
   $("stat-time").textContent = hours < 1 ? `${Math.round(hours * 60)} min` : `${hours.toFixed(1)} hr`;

@@ -162,6 +162,64 @@ export function buildGpx(points, name = "Google Maps Route") {
   return lines.join("\n");
 }
 
+// --- route drawing ---------------------------------------------------------
+
+/**
+ * Render the routed track as a standalone SVG string (no map tiles, no deps).
+ * Yellow trace with start (green), finish (red), and intermediate stop markers.
+ * Uses an equirectangular projection with longitude scaled by cos(lat) so the
+ * shape isn't distorted, fit to the given box while preserving aspect ratio.
+ */
+export function buildRouteSvg(points, stops = [], opts = {}) {
+  const { width = 720, height = 340, padding = 18 } = opts;
+  if (!points || points.length === 0) return "";
+
+  const lats = points.map((p) => p.lat);
+  const lons = points.map((p) => p.lon);
+  const minLat = Math.min(...lats);
+  const maxLat = Math.max(...lats);
+  const minLon = Math.min(...lons);
+  const maxLon = Math.max(...lons);
+  const kx = Math.cos(((minLat + maxLat) / 2) * (Math.PI / 180)) || 1;
+  const spanX = (maxLon - minLon) * kx || 1e-6;
+  const spanY = maxLat - minLat || 1e-6;
+  const scale = Math.min((width - 2 * padding) / spanX, (height - 2 * padding) / spanY);
+  const offX = (width - spanX * scale) / 2;
+  const offY = (height - spanY * scale) / 2;
+  const project = (lat, lon) => [
+    offX + (lon - minLon) * kx * scale,
+    offY + (maxLat - lat) * scale,
+  ];
+
+  const poly = points
+    .map((p) => {
+      const [x, y] = project(p.lat, p.lon);
+      return `${x.toFixed(1)},${y.toFixed(1)}`;
+    })
+    .join(" ");
+
+  const dot = (lat, lon, fill, r) => {
+    const [x, y] = project(lat, lon);
+    return `<circle cx="${x.toFixed(1)}" cy="${y.toFixed(1)}" r="${r}" fill="${fill}" stroke="#0a0a0a" stroke-width="1.5"/>`;
+  };
+  const markers = stops
+    .map((s, i) =>
+      i === 0
+        ? dot(s.lat, s.lon, "#3ecf8e", 6)
+        : i === stops.length - 1
+          ? dot(s.lat, s.lon, "#ff5a5a", 6)
+          : dot(s.lat, s.lon, "#ffffff", 4)
+    )
+    .join("");
+
+  return (
+    `<svg viewBox="0 0 ${width} ${height}" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Route preview">` +
+    `<polyline points="${poly}" fill="none" stroke="#ffe600" stroke-width="2.5" stroke-linejoin="round" stroke-linecap="round"/>` +
+    markers +
+    `</svg>`
+  );
+}
+
 // --- orchestration ---------------------------------------------------------
 
 /**

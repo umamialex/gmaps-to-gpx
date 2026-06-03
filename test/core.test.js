@@ -10,6 +10,7 @@ import {
   buildGpx,
   buildOsrmUrl,
   parseOsrmResponse,
+  buildRouteSvg,
   linkToGpx,
 } from "../src/core.js";
 
@@ -160,6 +161,35 @@ test("parseOsrmResponse maps geometry and throws on non-Ok", () => {
   assert.ok(Math.abs(mi - 1) < 1e-6);
   assert.ok(Math.abs(hours - 1) < 1e-6);
   assert.throws(() => parseOsrmResponse({ code: "NoRoute" }), /OSRM routing failed/);
+});
+
+// --- route drawing ---------------------------------------------------------
+
+test("buildRouteSvg draws a polyline with start/finish markers", () => {
+  const pts = [
+    { lat: 30.1, lon: -98.1 },
+    { lat: 30.2, lon: -98.2 },
+    { lat: 30.15, lon: -98.05 },
+  ];
+  const stops = [
+    { lat: 30.1, lon: -98.1 },
+    { lat: 30.15, lon: -98.05 },
+  ];
+  const svg = buildRouteSvg(pts, stops, { width: 200, height: 100 });
+  assert.match(svg, /<svg /);
+  assert.match(svg, /viewBox="0 0 200 100"/);
+  assert.match(svg, /<polyline /);
+  assert.equal((svg.match(/<circle /g) || []).length, 2); // start + finish
+  assert.match(svg, /#3ecf8e/); // start green
+  assert.match(svg, /#ff5a5a/); // finish red
+  // projected coordinates stay within the box
+  for (const m of svg.matchAll(/(?:points="|cx=")([\d.]+)/g)) {
+    assert.ok(Number(m[1]) >= 0 && Number(m[1]) <= 200);
+  }
+});
+
+test("buildRouteSvg returns empty string for no points", () => {
+  assert.equal(buildRouteSvg([]), "");
 });
 
 // --- orchestration with injected I/O (no real network) ---------------------
