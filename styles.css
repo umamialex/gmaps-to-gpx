@@ -25,18 +25,45 @@ body {
 main {
   max-width: 760px;
   margin: 0 auto;
-  padding: clamp(2.5rem, 6vw, 6rem) 1.5rem 5rem;
+  padding: clamp(2.25rem, 5vw, 3.5rem) 1.5rem 5rem;
 }
 
 /* ---- hero ---- */
-.hero { margin-bottom: clamp(2rem, 5vw, 3.5rem); }
+.hero {
+  position: relative;
+  min-height: clamp(360px, 68vh, 680px);
+  display: flex;
+  align-items: flex-end;
+  background: #0a0a0a url("./assets/car.jpg") center 38% / cover no-repeat;
+  border-bottom: 1px solid var(--line);
+}
+.hero::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to top,
+    rgba(10, 10, 10, 0.92) 0%,
+    rgba(10, 10, 10, 0.55) 28%,
+    rgba(10, 10, 10, 0.1) 60%,
+    rgba(10, 10, 10, 0.25) 100%
+  );
+}
+.hero-inner {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  max-width: 760px;
+  margin: 0 auto;
+  padding: 0 1.5rem clamp(2rem, 5vw, 3rem);
+}
 
 .eyebrow {
-  margin: 0 0 1.25rem;
+  margin: 0 0 1.1rem;
   font-size: 0.72rem;
   letter-spacing: 0.32em;
   text-transform: uppercase;
-  color: var(--muted);
+  color: var(--accent);
 }
 .eyebrow strong { color: var(--accent); font-weight: 600; }
 
@@ -47,10 +74,11 @@ h1 {
   font-size: clamp(2.6rem, 9vw, 5rem);
   line-height: 0.95;
   letter-spacing: -0.02em;
+  text-shadow: 0 2px 30px rgba(0, 0, 0, 0.6);
 }
 
 .lede {
-  margin: 1.5rem 0 0;
+  margin: 0 0 2.5rem;
   max-width: 46ch;
   color: #cfcfcf;
   font-size: clamp(1rem, 2.2vw, 1.15rem);

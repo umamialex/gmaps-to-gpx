@@ -16,6 +16,10 @@ const TYPES = {
   ".json": "application/json",
   ".gpx": "application/gpx+xml",
   ".svg": "image/svg+xml",
+  ".jpg": "image/jpeg",
+  ".jpeg": "image/jpeg",
+  ".png": "image/png",
+  ".webp": "image/webp",
 };
 
 http
