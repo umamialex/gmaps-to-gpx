@@ -45,16 +45,17 @@ function renderResult({ stops, points, miles, hours, gpx }, name) {
   lastGpx = gpx;
   lastFilename = slugify(name);
 
-  $("summary-text").textContent =
-    `${miles.toFixed(1)} mi · ~${hours.toFixed(1)} hr · ${points.length} points · ${stops.length} stops`;
+  $("stat-distance").textContent = `${miles.toFixed(1)} mi`;
+  $("stat-time").textContent = hours < 1 ? `${Math.round(hours * 60)} min` : `${hours.toFixed(1)} hr`;
+  $("stat-stops").textContent = stops.length;
 
   const ol = $("stops");
   ol.innerHTML = "";
   stops.forEach((s, i) => {
     const li = document.createElement("li");
     const endpoint = i === 0 || i === stops.length - 1;
-    const label = i === 0 ? "start" : i === stops.length - 1 ? "end" : `stop ${i}`;
-    li.textContent = `${label}: ${s.lat.toFixed(6)}, ${s.lon.toFixed(6)}`;
+    const label = i === 0 ? "Start" : i === stops.length - 1 ? "Finish" : `Stop ${i}`;
+    li.textContent = `${label} — ${s.lat.toFixed(5)}, ${s.lon.toFixed(5)}`;
     if (endpoint) li.className = "endpoint";
     ol.appendChild(li);
   });
@@ -70,7 +71,7 @@ form.addEventListener("submit", async (e) => {
 
   $("go").disabled = true;
   resultEl.hidden = true;
-  setStatus("Expanding link, decoding stops, and routing…", "working");
+  setStatus("Plotting your stage…", "working");
 
   try {
     const result = await linkToGpx({ url, expandToText, name, straight });
