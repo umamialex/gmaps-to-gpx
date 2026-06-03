@@ -80,15 +80,23 @@ h1 {
 }
 
 .lede {
-  margin: 1.25rem 0 0;
-  max-width: 46ch;
-  color: #e2e2e2;
+  margin: 0 0 2.5rem;
+  max-width: 50ch;
+  color: #c8c8c8;
   font-size: clamp(1rem, 2.2vw, 1.2rem);
-  text-shadow: 0 1px 16px rgba(0, 0, 0, 0.6);
 }
+.lede strong { color: var(--fg); font-weight: 600; }
 
-/* ---- form panel ---- */
-.panel { margin-top: 2rem; }
+/* ---- form panel (frosted card so labels read over the photo) ---- */
+.panel {
+  margin-top: 2rem;
+  background: rgba(12, 12, 12, 0.72);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 4px;
+  padding: 1.5rem;
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+}
 
 .field-label,
 label {
