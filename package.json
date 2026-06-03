@@ -1,0 +1,22 @@
+{
+  "name": "gmaps-to-gpx",
+  "version": "1.0.0",
+  "description": "Convert a Google Maps directions link into a Sideways-compatible GPX track.",
+  "type": "module",
+  "bin": {
+    "gmaps-to-gpx": "bin/cli.js"
+  },
+  "scripts": {
+    "start": "node bin/cli.js",
+    "test": "node --test",
+    "serve": "node scripts/serve.js"
+  },
+  "engines": {
+    "node": ">=18"
+  },
+  "files": [
+    "src",
+    "bin"
+  ],
+  "license": "MIT"
+}

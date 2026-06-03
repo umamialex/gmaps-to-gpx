@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Google Maps → GPX</title>
+    <meta
+      name="description"
+      content="Convert a Google Maps directions link into a Sideways-compatible GPX track."
+    />
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <main>
+      <h1>Google Maps → GPX</h1>
+      <p class="sub">
+        Paste a Google Maps directions link (or an already-expanded URL). It decodes the
+        exact stops, routes them along roads, and gives you a <code>.gpx</code> track that
+        the Sideways app will load.
+      </p>
+
+      <form id="form">
+        <label for="url">Google Maps link</label>
+        <input
+          id="url"
+          type="text"
+          placeholder="https://maps.app.goo.gl/…  (or a full maps URL containing geocode=)"
+          autocomplete="off"
+          required
+        />
+
+        <div class="row">
+          <div class="field">
+            <label for="name">Track name</label>
+            <input id="name" type="text" value="Google Maps Route" />
+          </div>
+          <label class="check">
+            <input id="uturns" type="checkbox" />
+            Allow U-turns at stops
+          </label>
+        </div>
+
+        <button id="go" type="submit">Convert</button>
+      </form>
+
+      <p id="status" class="status" hidden></p>
+
+      <section id="result" hidden>
+        <div class="summary">
+          <span id="summary-text"></span>
+          <button id="download" type="button">Download GPX</button>
+        </div>
+        <details>
+          <summary id="stops-summary">Stops</summary>
+          <ol id="stops"></ol>
+        </details>
+      </section>
+
+      <footer>
+        <p>
+          Runs entirely in your browser. Short links are expanded through a public CORS
+          proxy (the link is the only thing sent to it); routing uses the public
+          <a href="https://project-osrm.org/" rel="noopener">OSRM</a> server. No data is
+          stored. If expansion fails, open the link once and paste the resulting URL here.
+        </p>
+        <p><a href="https://github.com/" id="repo-link" rel="noopener">Source &amp; CLI</a></p>
+      </footer>
+    </main>
+
+    <script type="module" src="./app.js"></script>
+  </body>
+</html>

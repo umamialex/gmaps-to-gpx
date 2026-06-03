@@ -1,7 +1,11 @@
 # Generated routes
 *.gpx
 # ...but keep the test fixtures
-!tests/fixtures/*.gpx
+!test/fixtures/*.gpx
+
+# Node
+node_modules/
+npm-debug.log*
 
 # Python
 __pycache__/
