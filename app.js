@@ -15,7 +15,7 @@ import { linkToGpx, buildRouteSvg } from "./src/core.js";
 // Fallback: public CORS proxies. They're inconsistent — the server they fetch
 // from sometimes gets a Google consent/shell page with no route data — so we
 // try several and use the first response that actually contains `geocode=`.
-const EXPAND_WORKER = ""; // e.g. "https://gmaps-expand.<subdomain>.workers.dev"
+const EXPAND_WORKER = "https://gmaps-expand.umamialex.workers.dev";
 
 const CORS_PROXIES = [
   ...(EXPAND_WORKER ? [(u) => `${EXPAND_WORKER}/?url=${encodeURIComponent(u)}`] : []),
