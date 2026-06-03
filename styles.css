@@ -31,22 +31,24 @@ main {
 /* ---- hero ---- */
 .hero {
   position: relative;
-  min-height: clamp(240px, 42vh, 440px);
+  min-height: clamp(640px, 100svh, 940px);
   display: flex;
-  align-items: flex-end;
+  align-items: flex-start;
   background: #0a0a0a url("./assets/car.jpg") center bottom / cover no-repeat;
   border-bottom: 1px solid var(--line);
 }
+/* dark scrim over the top (sky) for legible content; clear over the car below */
 .hero::after {
   content: "";
   position: absolute;
   inset: 0;
   background: linear-gradient(
-    to top,
-    rgba(10, 10, 10, 0.92) 0%,
-    rgba(10, 10, 10, 0.55) 28%,
-    rgba(10, 10, 10, 0.1) 60%,
-    rgba(10, 10, 10, 0.25) 100%
+    to bottom,
+    rgba(10, 10, 10, 0.95) 0%,
+    rgba(10, 10, 10, 0.62) 24%,
+    rgba(10, 10, 10, 0) 50%,
+    rgba(10, 10, 10, 0) 86%,
+    rgba(10, 10, 10, 0.35) 100%
   );
 }
 .hero-inner {
@@ -55,7 +57,7 @@ main {
   width: 100%;
   max-width: 760px;
   margin: 0 auto;
-  padding: 0 1.5rem clamp(2rem, 5vw, 3rem);
+  padding: clamp(2.5rem, 7vh, 4.5rem) 1.5rem 2rem;
 }
 
 .eyebrow {
@@ -86,6 +88,8 @@ h1 {
 }
 
 /* ---- form panel ---- */
+.panel { margin-top: 2rem; }
+
 .field-label,
 label {
   display: block;

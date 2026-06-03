@@ -73,40 +73,43 @@
         <h1>From the map<br />to the apex</h1>
         <p class="lede">
           Paste a Google Maps route and get a clean GPX of the drive — corner for corner.
+          Plan the perfect backroad stage, then take it with you. Pairs nicely with pace-note
+          apps like <strong>Sideways</strong>.
         </p>
+
+        <form id="form" class="panel">
+          <label for="url" class="field-label">Your route</label>
+          <div class="primary">
+            <input
+              id="url"
+              type="text"
+              placeholder="Paste a Google Maps directions link"
+              autocomplete="off"
+              required
+            />
+            <button id="go" type="submit">Generate GPX</button>
+          </div>
+
+          <div class="secondary">
+            <div class="field">
+              <label for="name">Stage name</label>
+              <input id="name" type="text" value="Sunday Stage" />
+            </div>
+            <details class="advanced">
+              <summary>Advanced</summary>
+              <label class="check">
+                <input id="uturns" type="checkbox" />
+                Let the route turn around at a stop instead of looping through
+              </label>
+            </details>
+          </div>
+        </form>
+
+        <p id="status" class="status" hidden></p>
       </div>
     </header>
 
     <main>
-      <form id="form" class="panel">
-        <label for="url" class="field-label">Your route</label>
-        <div class="primary">
-          <input
-            id="url"
-            type="text"
-            placeholder="Paste a Google Maps directions link"
-            autocomplete="off"
-            required
-          />
-          <button id="go" type="submit">Generate GPX</button>
-        </div>
-
-        <div class="secondary">
-          <div class="field">
-            <label for="name">Stage name</label>
-            <input id="name" type="text" value="Sunday Stage" />
-          </div>
-          <details class="advanced">
-            <summary>Advanced</summary>
-            <label class="check">
-              <input id="uturns" type="checkbox" />
-              Let the route turn around at a stop instead of looping through
-            </label>
-          </details>
-        </div>
-      </form>
-
-      <p id="status" class="status" hidden></p>
 
       <section id="result" class="result" hidden>
         <div class="stats">

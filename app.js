@@ -61,6 +61,7 @@ function renderResult({ stops, points, miles, hours, gpx }, name) {
   });
 
   resultEl.hidden = false;
+  resultEl.scrollIntoView({ behavior: "smooth", block: "start" });
 }
 
 form.addEventListener("submit", async (e) => {
