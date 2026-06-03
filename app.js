@@ -7,11 +7,18 @@
 
 import { linkToGpx, buildRouteSvg } from "./src/core.js";
 
-// The browser can't follow Google's short-link redirect itself (CORS), so we
-// route it through public CORS proxies. They're inconsistent — the server they
-// fetch from sometimes gets a Google consent/shell page with no route data — so
-// we try several and use the first response that actually contains `geocode=`.
+// The browser can't follow Google's short-link redirect itself (CORS).
+//
+// Best path: a Cloudflare Worker (see worker/) that resolves the link
+// server-side and returns it with CORS. Set EXPAND_WORKER to your deployed URL.
+//
+// Fallback: public CORS proxies. They're inconsistent — the server they fetch
+// from sometimes gets a Google consent/shell page with no route data — so we
+// try several and use the first response that actually contains `geocode=`.
+const EXPAND_WORKER = ""; // e.g. "https://gmaps-expand.<subdomain>.workers.dev"
+
 const CORS_PROXIES = [
+  ...(EXPAND_WORKER ? [(u) => `${EXPAND_WORKER}/?url=${encodeURIComponent(u)}`] : []),
   (u) => `https://corsproxy.io/?url=${encodeURIComponent(u)}`,
   (u) => `https://api.codetabs.com/v1/proxy/?quest=${encodeURIComponent(u)}`,
   (u) => `https://api.allorigins.win/raw?url=${encodeURIComponent(u)}`,

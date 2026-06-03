@@ -1,0 +1,7 @@
+name = "gmaps-expand"
+main = "expand.js"
+compatibility_date = "2024-11-01"
+
+# Free plan is plenty. After `npx wrangler deploy` you'll get a URL like
+#   https://gmaps-expand.<your-subdomain>.workers.dev
+# Put that URL in app.js -> EXPAND_WORKER.

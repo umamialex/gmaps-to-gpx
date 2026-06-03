@@ -92,6 +92,13 @@ Pages on push to `main`. Enable **Settings → Pages → Source: GitHub Actions*
 app imports the shared `src/core.js`, so the whole repo root is published; the app lives at
 the site root.
 
+## Reliable link expansion (optional)
+
+The web app resolves short links through public CORS proxies, which can be flaky.
+For a bulletproof path, deploy the tiny Cloudflare Worker in [`worker/`](worker/) and
+set its URL as `EXPAND_WORKER` in `app.js` — the app uses it first and falls back to
+the proxies only if needed. See [`worker/README.md`](worker/README.md).
+
 ## Notes & gotchas
 
 - **Getting the coordinates right matters more than the routing engine.** A route that
